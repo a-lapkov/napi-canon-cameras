@@ -171,7 +171,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'Auto': 0,
         'Bulb': 12,
         'NotValid': 4294967295,
@@ -181,7 +181,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneHalfValues: {[key: string]: number} = {
+    static readonly OneHalfValues = {
         '16': 30,
         '19': 25,
         '20': 20,
@@ -254,7 +254,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneThirdValues: {[key: string]: number} = {
+    static readonly OneThirdValues = {
         '21': 20,
         '29': 10,
         '35': 6,

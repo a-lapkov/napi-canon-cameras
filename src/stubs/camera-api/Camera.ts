@@ -149,7 +149,7 @@ export class Camera {
      * @readonly
      * @enum {string}
      */
-    static readonly EventName: {[key: string]: string} = {
+    static readonly EventName = {
         'CameraConnect': 'CameraConnect',
         'CameraDisconnect': 'CameraDisconnect',
         'DirectoryCreate': 'DirectoryCreate',
@@ -170,7 +170,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly Command: {[key: string]: number} = {
+    static readonly Command = {
         'BulbEnd': 3,
         'BulbStart': 2,
         'DoClickWBEvf': 260,
@@ -191,7 +191,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly PressShutterButton: {[key: string]: number} = {
+    static readonly PressShutterButton = {
         'Completely': 3,
         'CompletelyNonAF': 65539,
         'Halfway': 1,

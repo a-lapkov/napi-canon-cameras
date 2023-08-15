@@ -103,7 +103,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'CR': 6553359,
         'CRHEIFL': 6488192,
         'CRHEIFLF': 6488195,
@@ -222,7 +222,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Format: {[key: string]: number} = {
+    static readonly Format = {
         'CR2': 6,
         'CRW': 2,
         'HEIF': 8,
@@ -235,7 +235,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Size: {[key: string]: number} = {
+    static readonly Size = {
         'Large': 0,
         'Middle': 1,
         'Middle1': 5,
@@ -251,7 +251,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly CompressionQuality: {[key: string]: number} = {
+    static readonly CompressionQuality = {
         'Fine': 3,
         'Lossless': 4,
         'Normal': 2,

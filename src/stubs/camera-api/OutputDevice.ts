@@ -118,7 +118,7 @@ export class OutputDevice implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'None': 0,
         'PC': 2,
         'PCSmall': 8,

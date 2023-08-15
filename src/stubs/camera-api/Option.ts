@@ -99,7 +99,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AEMode: {[key: string]: number} = {
+    static readonly AEMode = {
         'A_DEP': 5,
         'Av': 2,
         'BackgroundBlur': 62,
@@ -165,7 +165,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AEModeSelect: {[key: string]: number} = {
+    static readonly AEModeSelect = {
         'A_DEP': 5,
         'Av': 2,
         'BackgroundBlur': 62,
@@ -232,7 +232,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AFMode: {[key: string]: number} = {
+    static readonly AFMode = {
         'AIFocus': 2,
         'AIServo': 1,
         'ManualFocus': 3,
@@ -244,7 +244,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly BatteryQuality: {[key: string]: number} = {
+    static readonly BatteryQuality = {
         'Full': 3,
         'Half': 1,
         'High': 2,
@@ -255,7 +255,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Bracket: {[key: string]: number} = {
+    static readonly Bracket = {
         'AEBracket': 1,
         'BracketOff': 4294967295,
         'FEBracket': 8,
@@ -267,7 +267,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ColorSpace: {[key: string]: number} = {
+    static readonly ColorSpace = {
         'AdobeRGB': 2,
         'sRGB': 1,
         'Unknown': 4294967295,
@@ -277,7 +277,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly DCStrobe: {[key: string]: number} = {
+    static readonly DCStrobe = {
         'Auto': 0,
         'Off': 3,
         'On': 1,
@@ -288,7 +288,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly DriveMode: {[key: string]: number} = {
+    static readonly DriveMode = {
         'ContinuousShooting': 1,
         'HighSpeedContinuous': 4,
         'LowSpeedContinuous': 5,
@@ -309,7 +309,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfAFMode: {[key: string]: number} = {
+    static readonly EvfAFMode = {
         'ExpandAFAreaAround': 6,
         'ExpandAFAreaCross': 5,
         'FaceTracking': 2,
@@ -327,7 +327,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfHistogramStatus: {[key: string]: number} = {
+    static readonly EvfHistogramStatus = {
         'Grayout': 2,
         'Hide': 0,
         'Normal': 1,
@@ -337,7 +337,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfOutputDevice: {[key: string]: number} = {
+    static readonly EvfOutputDevice = {
         'None': 0,
         'PC': 2,
         'SmallPC': 8,
@@ -348,7 +348,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfZoom: {[key: string]: number} = {
+    static readonly EvfZoom = {
         'Fit': 1,
         'x5': 5,
         'x10': 10,
@@ -358,7 +358,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly LensBarrelStatus: {[key: string]: number} = {
+    static readonly LensBarrelStatus = {
         'Inner': 0,
         'Outer': 1,
     };
@@ -367,7 +367,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly LensStatus: {[key: string]: number} = {
+    static readonly LensStatus = {
         'Attached': 1,
         'NotAttached': 0,
     };
@@ -376,7 +376,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MeteringMode: {[key: string]: number} = {
+    static readonly MeteringMode = {
         'CenterWeightedAverage': 5,
         'Evaluative': 3,
         'NotValid': 4294967295,
@@ -388,7 +388,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MirrorUpStatus: {[key: string]: number} = {
+    static readonly MirrorUpStatus = {
         'Disable': 0,
         'DuringShooting': 2,
         'Enable': 1,
@@ -398,7 +398,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MovieQuality: {[key: string]: number} = {
+    static readonly MovieQuality = {
         '23.98fps (RAW)': 668272,
         '24.00fps (RAW)': 668528,
         '25.00fps (RAW)': 668784,
@@ -515,7 +515,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly NoiseReduction: {[key: string]: number} = {
+    static readonly NoiseReduction = {
         'Auto': 4,
         'Off': 0,
         'On1': 1,
@@ -527,7 +527,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly RedEye: {[key: string]: number} = {
+    static readonly RedEye = {
         'Invalid': 4294967295,
         'Off': 0,
         'On': 1,
@@ -537,7 +537,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Record: {[key: string]: number} = {
+    static readonly Record = {
         'Begin': 4,
         'End': 0,
     };
@@ -546,7 +546,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly SaveTo: {[key: string]: number} = {
+    static readonly SaveTo = {
         'Both': 3,
         'Camera': 1,
         'Host': 2,
@@ -556,7 +556,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly WhiteBalance: {[key: string]: number} = {
+    static readonly WhiteBalance = {
         'AutoAmbiencePriority': 0,
         'AutoWhitePriority': 23,
         'Click': 4294967295,

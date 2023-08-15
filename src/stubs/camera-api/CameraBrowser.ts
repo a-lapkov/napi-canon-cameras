@@ -106,7 +106,7 @@ export class CameraBrowser {
      * @readonly
      * @enum {string}
      */
-    static readonly EventName: {[key: string]: string} = {
+    static readonly EventName = {
         'CameraAdd': 'CameraAdd',
         'CameraConnect': 'CameraConnect',
         'CameraDisconnect': 'CameraDisconnect',

@@ -22,7 +22,7 @@ export class TimeZone implements PropertyValue {
     ) {
         this.value_ = value_;
         this.zone_ = value_;
-        this.label_ = TimeZone.Zones[`${value_}`] || '';
+        this.label_ = TimeZone.Zones[`${value_}` as keyof typeof TimeZone.Zones] || '';
     }
 
     /**
@@ -91,7 +91,7 @@ export class TimeZone implements PropertyValue {
      * @readonly
      * @enum {string}
      */
-    static readonly Zones: {[key: string]: string} = {
+    static readonly Zones = {
         '0': 'None',
         '1': 'Chatham Islands',
         '2': 'Wellington',

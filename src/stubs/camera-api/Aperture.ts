@@ -18,7 +18,8 @@ export class Aperture implements PropertyValue {
     constructor(
         private readonly value_: number,
     ) {
-        const name = Object.keys(Aperture.ID).find(key => Aperture.ID[key] === value_);
+        const keys = Object.keys(Aperture.ID) as (keyof typeof Aperture.ID)[];
+        const name = keys.find(key => Aperture.ID[key] === value_);
         const formatAperture = (aperture: number) => (
             'f' +
             aperture.toFixed(1).replace(/\.0$/, '')
@@ -27,10 +28,10 @@ export class Aperture implements PropertyValue {
             this.label_ = name;
             this.aperture_ = 0;
         } else if (`${value_}` in Aperture.OneThirdValues) {
-            this.aperture_ = Aperture.OneThirdValues[value_] || 0;
+            this.aperture_ = Aperture.OneThirdValues[`${value_}` as keyof typeof Aperture.OneThirdValues] || 0;
             this.label_ = formatAperture(this.aperture_) + ' (1/3)';
         } else {
-            this.aperture_ = Aperture.OneHalfValues[value_] || 0;
+            this.aperture_ = Aperture.OneHalfValues[`${value_}` as keyof typeof Aperture.OneHalfValues] || 0;
             this.label_ = formatAperture(this.aperture_);
         }
     }
@@ -108,7 +109,8 @@ export class Aperture implements PropertyValue {
         } else {
             aperture = (new Aperture(valueOrLabel)).aperture;
         }
-        const found = Object.keys(Aperture.AllValues).reduce(
+        const keys = Object.keys(Aperture.AllValues) as (keyof typeof Aperture.AllValues)[];
+        const found = keys.reduce(
             (carry: null | { value: number, difference: number }, key) => {
                 const current = Aperture.AllValues[key];
                 const difference = Math.abs(current - aperture);
@@ -140,19 +142,27 @@ export class Aperture implements PropertyValue {
      */
     static forLabel(label: string): Aperture | null {
         if (label in Aperture.ID) {
-            return new Aperture(Aperture.ID[label]);
+            return new Aperture(Aperture.ID[label as keyof typeof Aperture.ID]);
         }
         const match = label.match(/f?(\d+(?:\.\d+)?)\s*(.*)/);
         if (match) {
             const aperture = parseFloat(match[1]) || 0.0;
             const isOneThird = match[2].indexOf('1/3') >= 0;
-            const values = isOneThird ? Aperture.OneThirdValues : Aperture.OneHalfValues;
-            const value = Object
-                .keys(values)
-                .find(
+            if (isOneThird) {
+                const values = Aperture.OneThirdValues;
+                const keys = Object.keys(values) as (keyof typeof values)[];
+                const value = keys.find(
                     (straw) => Math.abs(values[straw] - aperture) < 0.00001,
                 );
-            return new Aperture(+(value || -1));
+                return new Aperture(+(value || -1));
+            } else {
+                const values = Aperture.OneHalfValues;
+                const keys = Object.keys(values) as (keyof typeof values)[];
+                const value = keys.find(
+                    (straw) => Math.abs(values[straw] - aperture) < 0.00001,
+                );
+                return new Aperture(+(value || -1));
+            }
         }
         return null;
     }
@@ -163,7 +173,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'Auto': 0,
         'NotValid': 4294967295,
     };
@@ -172,7 +182,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneHalfValues: {[key: string]: number} = {
+    static readonly OneHalfValues = {
         '8': 1,
         '11': 1.1,
         '12': 1.2,
@@ -228,7 +238,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneThirdValues: {[key: string]: number} = {
+    static readonly OneThirdValues = {
         '13': 1.2,
         '21': 1.8,
         '29': 2.5,

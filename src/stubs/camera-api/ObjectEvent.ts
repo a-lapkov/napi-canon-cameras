@@ -28,7 +28,7 @@ export class ObjectEvent extends ApiIdentifier {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'All': 512,
         'DirItemCancelTransferDT': 522,
         'DirItemContentChanged': 519,

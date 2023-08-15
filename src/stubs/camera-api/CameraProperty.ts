@@ -162,7 +162,7 @@ export class CameraProperty {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'AEBracket': 1038,
         'AEMode': 1024,
         'AEModeSelect': 1078,

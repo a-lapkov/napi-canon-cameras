@@ -36,7 +36,7 @@ export class ApiError extends ApiIdentifier {
      * @readonly
      * @enum {number}
      */
-    static readonly Code: {[key: string]: number} = {
+    static readonly Code = {
         'CANNOT_MAKE_OBJECT': 41220,
         'CAPTURE_ALREADY_TERMINATED': 8216,
         'COMM_BUFFER_FULL': 195,

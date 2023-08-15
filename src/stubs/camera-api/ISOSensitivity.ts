@@ -140,7 +140,7 @@ export class ISOSensitivity implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'Auto': 0,
     };
 
@@ -148,7 +148,7 @@ export class ISOSensitivity implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Values: {[key: string]: number} = {
+    static readonly Values = {
         '40': 6,
         '48': 12,
         '56': 25,

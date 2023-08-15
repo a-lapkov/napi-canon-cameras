@@ -57,7 +57,7 @@ export class FileFormat implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID = {
         'CR2': 45315,
         'CR3': 45320,
         'HEIF_CODE': 45323,

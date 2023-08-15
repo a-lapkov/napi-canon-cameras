@@ -104,7 +104,7 @@ export class Volume {
      * @readonly
      * @enum {number}
      */
-    static readonly StorageType: {[key: string]: number} = {
+    static readonly StorageType = {
         'CFast': 5,
         'CompactFlash': 1,
         'HardDrive': 4,

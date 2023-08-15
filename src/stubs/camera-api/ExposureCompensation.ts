@@ -137,7 +137,7 @@ export class ExposureCompensation implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Values: {[key: string]: number} = {
+    static readonly Values = {
         '0': 0,
         '3': 0.3333333333333333,
         '4': 0.5,
