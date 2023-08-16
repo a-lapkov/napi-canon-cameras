@@ -28,7 +28,7 @@ export class ObjectEvent extends ApiIdentifier {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'All' | 'VolumeInfoChanged' | 'VolumeUpdateItems' | 'FolderUpdateItems' | 'DirItemCreated' | 'DirItemRemoved' | 'DirItemInfoChanged' | 'DirItemContentChanged' | 'DirItemRequestTransfer' | 'DirItemRequestTransferDT' | 'DirItemCancelTransferDT' | 'VolumeAdded' | 'VolumeRemoved', number> = {
         'All': 512,
         'DirItemCancelTransferDT': 522,
         'DirItemContentChanged': 519,

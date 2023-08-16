@@ -20,7 +20,8 @@ export class OutputDevice implements PropertyValue {
     ) {
         this.value_ = value;
         const deviceNames = [];
-        for (const deviceName of Object.keys(OutputDevice.ID)) {
+        let deviceName: keyof typeof OutputDevice.ID;
+        for (deviceName in OutputDevice.ID) {
             if (
                 OutputDevice.ID[deviceName] > 0 &&
                 this.isEnabled(OutputDevice.ID[deviceName])
@@ -76,7 +77,8 @@ export class OutputDevice implements PropertyValue {
      */
     getDevices(): OutputDeviceStatusList {
         const devices: { [name: string]: boolean } = {};
-        for (const deviceName of Object.keys(OutputDevice.ID)) {
+        let deviceName: keyof typeof OutputDevice.ID;
+        for (deviceName in OutputDevice.ID) {
             if (OutputDevice.ID[deviceName] > 0) {
                 devices[deviceName] = this.isEnabled(OutputDevice.ID[deviceName]);
             }
@@ -106,7 +108,7 @@ export class OutputDevice implements PropertyValue {
         let value = OutputDevice.ID.None;
         for (const deviceName of deviceNames) {
             if (deviceName in OutputDevice.ID) {
-                value |= OutputDevice.ID[deviceName];
+                value |= OutputDevice.ID[deviceName as keyof typeof OutputDevice.ID];
             }
         }
         return new OutputDevice(value);
@@ -118,7 +120,7 @@ export class OutputDevice implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'None' | 'TFT' | 'PC' | 'PCSmall', number> = {
         'None': 0,
         'PC': 2,
         'PCSmall': 8,

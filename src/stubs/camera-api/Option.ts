@@ -20,7 +20,8 @@ export class Option implements PropertyValue {
         private readonly value_: number
     ) {
         this.label_ = `0x${value_.toString(16).padStart(8, '0')}`;
-        const propertyLabel = Object.keys(CameraProperty.ID).find(key => CameraProperty.ID[key] === propertyID_);
+        const keys = Object.keys(CameraProperty.ID) as (keyof typeof CameraProperty.ID)[];
+        const propertyLabel = keys.find(key => CameraProperty.ID[key] === propertyID_);
         if (propertyLabel && propertyLabel in Option) {
             // eslint-disable-next-line  @typescript-eslint/no-explicit-any
             const optionLabels = (Option as any)[propertyLabel];
@@ -80,7 +81,7 @@ export class Option implements PropertyValue {
      */
     static forLabel(label: string): Option | null {
         const [propertyLabel, optionLabel] = label.split('.', 2);
-        const propertyID = CameraProperty.ID[propertyLabel] || null;
+        const propertyID = CameraProperty.ID[propertyLabel as keyof typeof CameraProperty.ID] || null;
         if (
             propertyID &&
             propertyLabel in Option &&
@@ -99,7 +100,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AEMode = {
+    static readonly AEMode: Record<'ProgramAE' | 'Tv' | 'Av' | 'Manual' | 'Bulb' | 'A_DEP' | 'DEP' | 'Custom' | 'Lock' | 'Green' | 'NightPortrait' | 'Sports' | 'Portrait' | 'Landscape' | 'Closeup' | 'FlashOff' | 'CreativeAuto' | 'Movie' | 'PhotoInMovie' | 'SceneIntelligentAuto' | 'SCN' | 'NightScenes' | 'BacklitScenes' | 'Children' | 'Food' | 'CandlelightPortraits' | 'CreativeFilter' | 'RoughMonoChrome' | 'SoftFocus' | 'ToyCamera' | 'Fisheye' | 'WaterColor' | 'Miniature' | 'Hdr_Standard' | 'Unknown' | 'Hdr_Vivid' | 'Hdr_Bold' | 'Hdr_Embossed' | 'Movie_Fantasy' | 'Movie_Old' | 'Movie_Memory' | 'Movie_DirectMono' | 'Movie_Mini' | 'PanningAssist' | 'GroupPhoto' | 'Myself' | 'PlusMovieAuto' | 'SmoothSkin' | 'Panorama' | 'Silent' | 'Flexible' | 'OilPainting' | 'Fireworks' | 'StarPortrait' | 'StarNightScape' | 'StarTrails' | 'StarTimelapseMovie' | 'BackgroundBlur' | 'VideoBlog', number> = {
         'A_DEP': 5,
         'Av': 2,
         'BackgroundBlur': 62,
@@ -165,7 +166,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AEModeSelect = {
+    static readonly AEModeSelect: Record<'ProgramAE' | 'Tv' | 'Av' | 'Manual' | 'Bulb' | 'A_DEP' | 'DEP' | 'Custom' | 'Lock' | 'Green' | 'NightPortrait' | 'Sports' | 'Portrait' | 'Landscape' | 'Closeup' | 'FlashOff' | 'CreativeAuto' | 'Movie' | 'PhotoInMovie' | 'SceneIntelligentAuto' | 'SCN' | 'NightScenes' | 'BacklitScenes' | 'Children' | 'Food' | 'CandlelightPortraits' | 'CreativeFilter' | 'RoughMonoChrome' | 'SoftFocus' | 'ToyCamera' | 'Fisheye' | 'WaterColor' | 'Miniature' | 'Hdr_Standard' | 'Unknown' | 'Hdr_Vivid' | 'Hdr_Bold' | 'Hdr_Embossed' | 'Movie_Fantasy' | 'Movie_Old' | 'Movie_Memory' | 'Movie_DirectMono' | 'Movie_Mini' | 'PanningAssist' | 'GroupPhoto' | 'Myself' | 'PlusMovieAuto' | 'SmoothSkin' | 'Panorama' | 'Silent' | 'Flexible' | 'OilPainting' | 'Fireworks' | 'StarPortrait' | 'StarNightScape' | 'StarTrails' | 'StarTimelapseMovie' | 'BackgroundBlur' | 'Custom2' | 'Custom3', number> = {
         'A_DEP': 5,
         'Av': 2,
         'BackgroundBlur': 62,
@@ -232,7 +233,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly AFMode = {
+    static readonly AFMode: Record<'OneShot' | 'AIServo' | 'AIFocus' | 'ManualFocus' | 'NotValid', number> = {
         'AIFocus': 2,
         'AIServo': 1,
         'ManualFocus': 3,
@@ -244,7 +245,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly BatteryQuality = {
+    static readonly BatteryQuality: Record<'Low' | 'Half' | 'High' | 'Full', number> = {
         'Full': 3,
         'Half': 1,
         'High': 2,
@@ -255,7 +256,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Bracket = {
+    static readonly Bracket: Record<'AEBracket' | 'ISOBracket' | 'WBBracket' | 'BracketOff' | 'FEBracket', number> = {
         'AEBracket': 1,
         'BracketOff': 4294967295,
         'FEBracket': 8,
@@ -267,7 +268,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ColorSpace = {
+    static readonly ColorSpace: Record<'sRGB' | 'AdobeRGB' | 'Unknown', number> = {
         'AdobeRGB': 2,
         'sRGB': 1,
         'Unknown': 4294967295,
@@ -277,7 +278,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly DCStrobe = {
+    static readonly DCStrobe: Record<'Auto' | 'On' | 'SlowSynchro' | 'Off', number> = {
         'Auto': 0,
         'Off': 3,
         'On': 1,
@@ -288,7 +289,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly DriveMode = {
+    static readonly DriveMode: Record<'SelfTimer10sec' | 'SingleShooting' | 'ContinuousShooting' | 'Video' | 'HighSpeedContinuous' | 'LowSpeedContinuous' | 'SingleSilentShooting' | 'SelfTimerContinuous' | 'SelfTimer2sec' | 'SuperHighSpeed14fps' | 'SilentSingleShooting' | 'SilentContinuousShooting' | 'SilentHSContinuous' | 'SilentLSContinuous', number> = {
         'ContinuousShooting': 1,
         'HighSpeedContinuous': 4,
         'LowSpeedContinuous': 5,
@@ -309,7 +310,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfAFMode = {
+    static readonly EvfAFMode: Record<'Quick' | 'OnePointAF' | 'FaceTracking' | 'FlexiZoneMulti' | 'ZoneAF' | 'ExpandAFAreaCross' | 'ExpandAFAreaAround' | 'LargeZoneAFHorizontal' | 'LargeZoneAFVertical' | 'TrackingAF' | 'SpotAF', number> = {
         'ExpandAFAreaAround': 6,
         'ExpandAFAreaCross': 5,
         'FaceTracking': 2,
@@ -327,7 +328,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfHistogramStatus = {
+    static readonly EvfHistogramStatus: Record<'Hide' | 'Normal' | 'Grayout', number> = {
         'Grayout': 2,
         'Hide': 0,
         'Normal': 1,
@@ -337,7 +338,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfOutputDevice = {
+    static readonly EvfOutputDevice: Record<'None' | 'SmallPC' | 'PC' | 'TFT', number> = {
         'None': 0,
         'PC': 2,
         'SmallPC': 8,
@@ -348,7 +349,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly EvfZoom = {
+    static readonly EvfZoom: Record<'Fit' | 'x5' | 'x10', number> = {
         'Fit': 1,
         'x5': 5,
         'x10': 10,
@@ -358,7 +359,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly LensBarrelStatus = {
+    static readonly LensBarrelStatus: Record<'Inner' | 'Outer', number> = {
         'Inner': 0,
         'Outer': 1,
     };
@@ -367,7 +368,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly LensStatus = {
+    static readonly LensStatus: Record<'NotAttached' | 'Attached', number> = {
         'Attached': 1,
         'NotAttached': 0,
     };
@@ -376,7 +377,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MeteringMode = {
+    static readonly MeteringMode: Record<'Spot' | 'Evaluative' | 'Partial' | 'NotValid' | 'CenterWeightedAverage', number> = {
         'CenterWeightedAverage': 5,
         'Evaluative': 3,
         'NotValid': 4294967295,
@@ -388,7 +389,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MirrorUpStatus = {
+    static readonly MirrorUpStatus: Record<'Disable' | 'Enable' | 'DuringShooting', number> = {
         'Disable': 0,
         'DuringShooting': 2,
         'Enable': 1,
@@ -398,7 +399,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly MovieQuality = {
+    static readonly MovieQuality: Record<'4096x2160 24.00fps Standard(IPB)' | '1920x1080 23.98fps Standard(IPB)' | '4096x2160 24.00fps For editing(ALL-I)' | '4096x2160 24.00fps Motion JPEG' | '1920x1080 23.98fps For editing(ALL-I)' | '1920x1080 23.98fps' | '4096x2160 23.98fps For editing(ALL-I)' | '1920x1080 24.00fps Standard(IPB)' | '4096x2160 23.98fps Motion JPEG' | '4096x2160 23.98fps Standard(IPB)' | '1280x720 100.0fps For editing(ALL-I)' | '3840x2160 25.00fps For editing(ALL-I)' | '1920x1080 24.00fps For editing(ALL-I)' | '1920x1080 25.00fps Standard(IPB)' | '3840x2160 24.00fps For editing(ALL-I)' | '1920x1080 25.00fps For editing(ALL-I)' | '1920x1080 25.00fps' | '1920x1080 29.97fps For editing(ALL-I)' | '7680x4320 23.98fps Standard(IPB)' | '1920x1080 29.97fps' | '1920x1080 29.97fps Standard(IPB)' | '4096x2160 59.94fps For editing(ALL-I)' | '1920x1080 50.00fps For editing(ALL-I)' | '1920x1080 29.97fps Light(IPB)' | '1920x1080 50.00fps Standard(IPB)' | '3840x2160 29.97fps For editing(ALL-I)' | '4096x2160 50.00fps Standard(IPB)' | '1920x1080 59.94fps For editing(ALL-I)' | '4096x2160 50.00fps For editing(ALL-I)' | '1920x1080 59.94fps Standard(IPB)' | '1920x1080 25.00fps Light(IPB)' | '7680x4320 29.97fps For editing(ALL-I)' | '1280x720 100.0fps Standard(IPB)' | '7680x4320 25.00fps Standard(IPB)' | '1920x1080 100.0fps For editing(ALL-I)' | '4096x2160 25.00fps For editing(ALL-I)' | '4096x2160 25.00fps Motion JPEG' | '1920x1080 119.9fps For editing(ALL-I)' | '1280x720 50.00fps For editing(ALL-I)' | '1280x720 50.00fps' | '1280x720 59.94fps For editing(ALL-I)' | '8192x4320 25.00fps Standard(IPB)' | '1280x720 59.94fps' | '1280x720 119.9fps For editing(ALL-I)' | '1280x720 25.00fps Standard(IPB)' | '1280x720 50.00fps Standard(IPB)' | '1280x720 29.97fps Standard(IPB)' | '1280x720 29.97fps Light(IPB)' | '1280x720 59.94fps Standard(IPB)' | '640x480 25.00fps' | '1280x720 119.9fps Standard(IPB)' | '640x480 29.97ffps' | '4096x2160 29.97fps For editing(ALL-I)' | '4096x2160 29.97fps Motion JPEG' | '4096x2160 25.00fps Standard(IPB)' | '4096x2160 29.970fps Standard(IPB)' | '4096x2160 59.94fps Standard(IPB)' | '4096x2160 100.0fps For editing(ALL-I)' | '4096x2160 119.9fps For editing(ALL-I)' | '3840x2160 23.98fps For editing(ALL-I)' | '3840x2160 23.98fps Standard(IPB)' | '3840x2160 24.00fps Standard(IPB)' | '3840x2160 25.00fps Standard(IPB)' | '3840x2160 29.97fps Standard(IPB)' | '3840x2160 50.00fps For editing(ALL-I)' | '3840x2160 50.00fps Standard(IPB)' | '3840x2160 59.94fps For editing(ALL-I)' | '3840x2160 59.94fps Standard(IPB)' | '3840x2160 100.0fps For editing(ALL-I)' | '3840x2160 119.9fps For editing(ALL-I)' | '8192x4320 23.98fps For editing(ALL-I)' | '8192x4320 23.98fps Standard(IPB)' | '8192x4320 24.00fps For editing(ALL-I)' | '8192x4320 24.00fps Standard(IPB)' | '8192x4320 25.00fps For editing(ALL-I)' | '8192x4320 29.97fps For editing(ALL-I)' | '8192x4320 29.97fps Standard(IPB)' | '7680x4320 23.98fps For editing(ALL-I)' | '7680x4320 25.00fps For editing(ALL-I)' | '7680x4320 29.97fps Standard(IPB)' | '23.98fps (RAW)' | '24.00fps (RAW)' | '25.00fps (RAW)' | '29.97fps (RAW)' | '50.00fps (RAW)' | '59.94fps (RAW)' | '1920x1080 23.98fps For editing(ALL-I)Crop' | '1920x1080 23.98fps Standard(IPB)Crop' | '1920x1080 24.00fps For editing(ALL-I)Crop' | '1920x1080 24.00fps Standard(IPB)Crop' | '1920x1080 25.00fps For editing(ALL-I)Crop' | '1920x1080 25.00fps Standard(IPB)Crop' | '1920x1080 29.97fps For editing(ALL-I)Crop' | '1920x1080 29.94fps Standard(IPB)Crop' | '1920x1080 50.00fps For editing(ALL-I)Crop' | '1920x1080 50.00fps Standard(IPB)Crop' | '1920x1080 59.94fps For editing(ALL-I)Crop' | '1920x1080 59.94fps Standard(IPB)Crop' | '4096x2160 23.98fps For editing(ALL-I) Crop' | '4096x2160 23.98fps Standard(IPB)Crop' | '4096x2160 24.00fps For editing(ALL-I)Crop' | '4096x2160 24.00fps Standard(IPB)Crop' | '4096x2160 25.00fps For editing(ALL-I)Crop' | '4096x2160 25.00fps Standard(IPB)Crop' | '4096x2160 29.97fps For editing(ALL-I)Crop' | '4096x2160 29.94fps Standard(IPB)Crop' | '4096x2160 50.00fps For editing(ALL-I)Crop' | '4096x2160 50.00fps Standard(IPB)Crop' | '4096x2160 59.94fps For editing(ALL-I)Crop' | '4096x2160 59.94fps Standard(IPB)Crop', number> = {
         '23.98fps (RAW)': 668272,
         '24.00fps (RAW)': 668528,
         '25.00fps (RAW)': 668784,
@@ -515,7 +516,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly NoiseReduction = {
+    static readonly NoiseReduction: Record<'Off' | 'On1' | 'On2' | 'On3' | 'Auto', number> = {
         'Auto': 4,
         'Off': 0,
         'On1': 1,
@@ -527,7 +528,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly RedEye = {
+    static readonly RedEye: Record<'Off' | 'On' | 'Invalid', number> = {
         'Invalid': 4294967295,
         'Off': 0,
         'On': 1,
@@ -537,7 +538,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Record = {
+    static readonly Record: Record<'End' | 'Begin', number> = {
         'Begin': 4,
         'End': 0,
     };
@@ -546,7 +547,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly SaveTo = {
+    static readonly SaveTo: Record<'Host' | 'Camera' | 'Both', number> = {
         'Both': 3,
         'Camera': 1,
         'Host': 2,
@@ -556,7 +557,7 @@ export class Option implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly WhiteBalance = {
+    static readonly WhiteBalance: Record<'Shade' | 'AutoAmbiencePriority' | 'Daylight' | 'Cloudy' | 'Tungsten' | 'Fluorescent' | 'Flash' | 'WhitePaper' | 'ColorTemperature' | 'CustomPC1' | 'CustomPC2' | 'CustomPC3' | 'WhitePaper2' | 'WhitePaper3' | 'WhitePaper4' | 'WhitePaper5' | 'CustomPC4' | 'CustomPC5' | 'AutoWhitePriority' | 'Click' | 'Pasted', number> = {
         'AutoAmbiencePriority': 0,
         'AutoWhitePriority': 23,
         'Click': 4294967295,

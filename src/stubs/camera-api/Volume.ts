@@ -104,7 +104,7 @@ export class Volume {
      * @readonly
      * @enum {number}
      */
-    static readonly StorageType = {
+    static readonly StorageType: Record<'NoMemoryCard' | 'CompactFlash' | 'SDCard' | 'HardDrive' | 'CFast', number> = {
         'CFast': 5,
         'CompactFlash': 1,
         'HardDrive': 4,

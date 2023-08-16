@@ -16,17 +16,16 @@ export class ShutterSpeed implements PropertyValue {
     constructor(
         private readonly value_: number,
     ) {
-        const name = Object
-            .keys(ShutterSpeed.ID)
-            .find(key => ShutterSpeed.ID[key] === value_);
+        const keys = Object.keys(ShutterSpeed.ID) as (keyof typeof ShutterSpeed.ID)[];
+        const name = keys.find(key => ShutterSpeed.ID[key] === value_);
         if (name) {
             this.label_ = name;
             this.seconds_ = 0;
         } else if (`${value_}` in ShutterSpeed.OneThirdValues) {
-            this.seconds_ = ShutterSpeed.OneThirdValues[value_] || 0;
+            this.seconds_ = ShutterSpeed.OneThirdValues[`${value_}` as keyof typeof ShutterSpeed.OneThirdValues] || 0;
             this.label_ = ShutterSpeed.getLabelForSeconds(this.seconds_) + ' (1/3)';
         } else {
-            this.seconds_ = ShutterSpeed.OneHalfValues[value_] || 0;
+            this.seconds_ = ShutterSpeed.OneHalfValues[`${value_}` as keyof typeof ShutterSpeed.OneHalfValues] || 0;
             this.label_ = ShutterSpeed.getLabelForSeconds(this.seconds_);
         }
     }
@@ -114,7 +113,8 @@ export class ShutterSpeed implements PropertyValue {
         } else {
             seconds = (new ShutterSpeed(valueOrLabel)).seconds;
         }
-        const found = Object.keys(ShutterSpeed.AllValues).reduce(
+        const keys = Object.keys(ShutterSpeed.AllValues) as (keyof typeof ShutterSpeed.AllValues)[];
+        const found = keys.reduce(
             (carry: null | { value: number, difference: number }, key) => {
                 const current = ShutterSpeed.AllValues[key];
                 const difference = Math.abs(current - seconds);
@@ -145,7 +145,7 @@ export class ShutterSpeed implements PropertyValue {
      */
     static forLabel(label: string): ShutterSpeed | null {
         if (label in ShutterSpeed.ID) {
-            return new ShutterSpeed(ShutterSpeed.ID[label]);
+            return new ShutterSpeed(ShutterSpeed.ID[label as keyof typeof ShutterSpeed.ID]);
         }
         const match = label.match(
             /(\d+(?:\.\d+)?)(?:\s*\/\s*(\d+))?(?:\s+(.*))?/,
@@ -156,11 +156,21 @@ export class ShutterSpeed implements PropertyValue {
             if (match[2]) {
                 seconds /= parseFloat(match[2]);
             }
-            const values = isOneThird ? ShutterSpeed.OneThirdValues : ShutterSpeed.OneHalfValues;
-            const value = Object.keys(values).find(
-                (straw) => Math.abs(values[straw] - seconds) < 0.0000001,
-            );
-            return new ShutterSpeed(+(value || -1));
+            if (isOneThird) {
+                const values = ShutterSpeed.OneThirdValues;
+                const keys = Object.keys(values) as (keyof typeof values)[];
+                const value = keys.find(
+                    (straw) => Math.abs(values[straw] - seconds) < 0.00001,
+                );
+                return new ShutterSpeed(+(value || -1));
+            } else {
+                const values = ShutterSpeed.OneHalfValues;
+                const keys = Object.keys(values) as (keyof typeof values)[];
+                const value = keys.find(
+                    (straw) => Math.abs(values[straw] - seconds) < 0.00001,
+                );
+                return new ShutterSpeed(+(value || -1));
+            }
         }
         return null;
     }
@@ -171,7 +181,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'Auto' | 'Bulb' | 'NotValid', number> = {
         'Auto': 0,
         'Bulb': 12,
         'NotValid': 4294967295,
@@ -181,7 +191,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneHalfValues = {
+    static readonly OneHalfValues: Record<'16' | '19' | '20' | '24' | '27' | '28' | '32' | '36' | '37' | '40' | '43' | '44' | '45' | '48' | '51' | '52' | '53' | '56' | '59' | '60' | '61' | '64' | '67' | '68' | '72' | '75' | '76' | '80' | '84' | '85' | '88' | '92' | '93' | '96' | '99' | '100' | '101' | '104' | '107' | '108' | '109' | '112' | '115' | '116' | '117' | '120' | '123' | '124' | '125' | '128' | '131' | '132' | '133' | '136' | '139' | '140' | '141' | '144' | '147' | '148' | '149' | '152' | '155' | '156' | '157' | '160', number> = {
         '16': 30,
         '19': 25,
         '20': 20,
@@ -254,7 +264,7 @@ export class ShutterSpeed implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneThirdValues = {
+    static readonly OneThirdValues: Record<'21' | '29' | '35' | '69' | '77' | '83' | '91', number> = {
         '21': 20,
         '29': 10,
         '35': 6,

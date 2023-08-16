@@ -149,7 +149,7 @@ export class Camera {
      * @readonly
      * @enum {string}
      */
-    static readonly EventName = {
+    static readonly EventName: Record<'CameraConnect' | 'CameraDisconnect' | 'StateChange' | 'KeepAlive' | 'LiveViewStart' | 'LiveViewStop' | 'PropertyChangeOptions' | 'PropertyChangeValue' | 'DownloadRequest' | 'FileCreate' | 'DirectoryCreate' | 'VolumeChange' | 'ObjectChange' | 'Error', string> = {
         'CameraConnect': 'CameraConnect',
         'CameraDisconnect': 'CameraDisconnect',
         'DirectoryCreate': 'DirectoryCreate',
@@ -170,7 +170,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly Command = {
+    static readonly Command: Record<'MovieSelectSwON' | 'SetRemoteShootingMode' | 'TakePicture' | 'DoEvfAf' | 'ExtendShutDownTimer' | 'RequestRollPitchLevel' | 'BulbStart' | 'BulbEnd' | 'DoClickWBEvf' | 'PressShutterButton' | 'DriveLensEvf' | 'MovieSelectSwOFF' | 'DrivePowerZoom' | 'RequestSensorCleaning', number> = {
         'BulbEnd': 3,
         'BulbStart': 2,
         'DoClickWBEvf': 260,
@@ -191,7 +191,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly PressShutterButton = {
+    static readonly PressShutterButton: Record<'HalfwayNonAF' | 'OFF' | 'Halfway' | 'Completely' | 'CompletelyNonAF', number> = {
         'Completely': 3,
         'CompletelyNonAF': 65539,
         'Halfway': 1,

@@ -173,7 +173,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'Auto' | 'NotValid', number> = {
         'Auto': 0,
         'NotValid': 4294967295,
     };
@@ -182,7 +182,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneHalfValues = {
+    static readonly OneHalfValues: Record<'8' | '11' | '12' | '16' | '19' | '20' | '24' | '27' | '28' | '32' | '35' | '36' | '40' | '43' | '44' | '45' | '48' | '51' | '52' | '53' | '56' | '59' | '60' | '61' | '64' | '68' | '69' | '72' | '75' | '76' | '77' | '80' | '83' | '84' | '85' | '88' | '91' | '92' | '93' | '96' | '99' | '100' | '101' | '104' | '107' | '108' | '109' | '112' | '133', number> = {
         '8': 1,
         '11': 1.1,
         '12': 1.2,
@@ -238,7 +238,7 @@ export class Aperture implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly OneThirdValues = {
+    static readonly OneThirdValues: Record<'13' | '21' | '29' | '37' | '67', number> = {
         '13': 1.2,
         '21': 1.8,
         '29': 2.5,

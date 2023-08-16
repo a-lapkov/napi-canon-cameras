@@ -22,7 +22,8 @@ export class ISOSensitivity implements PropertyValue {
             this.label_ = 'Auto';
             this.sensitivity_ = 0;
         } else {
-            this.sensitivity_ = ISOSensitivity.Values[value_] || 0;
+            const key = `${value_}` as keyof typeof ISOSensitivity.Values;
+            this.sensitivity_ = ISOSensitivity.Values[key] || 0;
             this.label_ = this.sensitivity_.toString();
         }
     }
@@ -91,7 +92,8 @@ export class ISOSensitivity implements PropertyValue {
         } else {
             sensitivity = (new ISOSensitivity(valueOrLabel)).sensitivity;
         }
-        const found = Object.keys(ISOSensitivity.Values).reduce(
+        const keys = Object.keys(ISOSensitivity.Values) as (keyof typeof ISOSensitivity.Values)[];
+        const found = keys.reduce(
             (carry: null | { value: number, difference: number }, key) => {
                 const current = ISOSensitivity.Values[key];
                 const difference = Math.abs(current - sensitivity);
@@ -123,11 +125,10 @@ export class ISOSensitivity implements PropertyValue {
      */
     static forLabel(label: string): ISOSensitivity | null {
         if (label in ISOSensitivity.ID) {
-            return new ISOSensitivity(ISOSensitivity.ID[label]);
+            return new ISOSensitivity(ISOSensitivity.ID[label as keyof typeof ISOSensitivity.ID]);
         }
-        const value = Object
-            .keys(ISOSensitivity.Values)
-            .find(key => ISOSensitivity.Values[key] === +label);
+        const keys = Object.keys(ISOSensitivity.Values) as (keyof typeof ISOSensitivity.Values)[];
+        const value = keys.find(key => ISOSensitivity.Values[key] === +label);
         if (value) {
             return new ISOSensitivity(+value);
         }
@@ -140,7 +141,7 @@ export class ISOSensitivity implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'Auto', number> = {
         'Auto': 0,
     };
 
@@ -148,7 +149,7 @@ export class ISOSensitivity implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Values = {
+    static readonly Values: Record<'40' | '48' | '56' | '64' | '72' | '75' | '77' | '80' | '83' | '85' | '88' | '91' | '93' | '96' | '99' | '101' | '104' | '107' | '109' | '112' | '115' | '117' | '120' | '123' | '125' | '128' | '131' | '133' | '136' | '139' | '141' | '144' | '147' | '149' | '152' | '160' | '168' | '176', number> = {
         '40': 6,
         '48': 12,
         '56': 25,

@@ -27,9 +27,8 @@ export class ImageQuality implements PropertyValue {
     constructor(
         private readonly value_: number
     ) {
-        const name = Object
-            .keys(ImageQuality.ID)
-            .find(key => ImageQuality.ID[key] === value_);
+        const keys = Object.keys(ImageQuality.ID) as (keyof typeof ImageQuality.ID)[];
+        const name = keys.find(key => ImageQuality.ID[key] === value_);
         if (name) {
             this.label_ = name;
         } else {
@@ -103,7 +102,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID = {
+    static readonly ID: Record<'LargeJPEG' | 'RAWAndSmall1JPEGFine' | 'LargeJPEGFine' | 'MiddleJPEG' | 'MRM2J' | 'Middle1JPEG' | 'SmallJPEG1' | 'SRM2J' | 'RAWAndSmall1JPEGNormal' | 'Middle2JPEG' | 'SmallJPEG' | 'SmallJPEG2' | 'LargeJPEGNormal' | 'MRS1JF' | 'MiddleJPEGFine' | 'MiddleJPEGNormal' | 'SRS1JF' | 'SmallJPEGFine' | 'HEIFMF' | 'SmallJPEGNormal' | 'Small1JPEGFine' | 'Small1JPEGNormal' | 'Small2JPEGFine' | 'Small3JPEGFine' | 'MRLJN' | 'RAW' | 'RAWAndLargeJPEGFine' | 'MRMJF' | 'RAWAndLargeJPEGNormal' | 'RAWAndMiddleJPEGFine' | 'MRLJF' | 'MRSJ' | 'MRS2JF' | 'RAWAndMiddleJPEGNormal' | 'SRM1J' | 'RAWAndSmall2JPEG' | 'CRHEIFS2F' | 'RAWAndSmallJPEGFine' | 'RAWAndSmallJPEGNormal' | 'MRMJN' | 'RAWAndSmallJPEG' | 'CRM1JN' | 'RAWAndSmall2JPEGFine' | 'RAWAndSmall3JPEGFine' | 'RAWAndLargeJPEG' | 'SRMJN' | 'RAWAndMiddleJPEG' | 'SRSJF' | 'RAWAndMiddle1JPEG' | 'SRS1JN' | 'RAWAndMiddle2JPEG' | 'RAWAndSmall1JPEG' | 'SRS3JF' | 'MR' | 'MRSJF' | 'MRSJN' | 'MRS1JN' | 'SR' | 'MRS3JF' | 'MRLJ' | 'MRM1J' | 'SRLJF' | 'SRLJN' | 'SRMJF' | 'SRSJN' | 'SRS2JF' | 'SRLJ' | 'SRSJ' | 'CR' | 'CRLJF' | 'CRMJF' | 'CRM1JF' | 'CRHEIFMN' | 'CRM2JF' | 'RHEIFS2F' | 'CRSJF' | 'CRS1JF' | 'CRS2JF' | 'CRS3JF' | 'CRLJN' | 'CRMJN' | 'CRM2JN' | 'CRSJN' | 'CRS1JN' | 'CRLJ' | 'CRMJ' | 'CRM1J' | 'CRM2J' | 'CRSJ' | 'CRS1J' | 'CRS2J' | 'HEIFL' | 'RHEIFL' | 'CRHEIFL' | 'HEIFLF' | 'HEIFLN' | 'HEIFMN' | 'HEIFS1F' | 'HEIFS1N' | 'HEIFS2F' | 'RHEIFLF' | 'RHEIFLN' | 'RHEIFMF' | 'RHEIFMN' | 'RHEIFS1F' | 'RHEIFS1N' | 'CRHEIFLF' | 'CRHEIFLN' | 'CRHEIFMF' | 'CRHEIFS1F' | 'CRHEIFS1N' | 'Unknown', number> = {
         'CR': 6553359,
         'CRHEIFL': 6488192,
         'CRHEIFLF': 6488195,
@@ -222,7 +221,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Format = {
+    static readonly Format: Record<'HEIF' | 'Unknown' | 'JPEG' | 'CRW' | 'RAW' | 'CR2', number> = {
         'CR2': 6,
         'CRW': 2,
         'HEIF': 8,
@@ -235,7 +234,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Size = {
+    static readonly Size: Record<'Small3' | 'Large' | 'Middle' | 'Small' | 'Middle1' | 'Small1' | 'Middle2' | 'Small2' | 'Unknown', number> = {
         'Large': 0,
         'Middle': 1,
         'Middle1': 5,
@@ -251,7 +250,7 @@ export class ImageQuality implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly CompressionQuality = {
+    static readonly CompressionQuality: Record<'Normal' | 'Fine' | 'Unknown' | 'Lossless' | 'SuperFine', number> = {
         'Fine': 3,
         'Lossless': 4,
         'Normal': 2,

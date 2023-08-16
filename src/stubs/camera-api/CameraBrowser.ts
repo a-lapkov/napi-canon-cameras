@@ -106,7 +106,7 @@ export class CameraBrowser {
      * @readonly
      * @enum {string}
      */
-    static readonly EventName = {
+    static readonly EventName: Record<'CameraAdd' | 'CameraRemove' | 'CameraConnect' | 'CameraDisconnect' | 'StateChange' | 'KeepAlive' | 'LiveViewStart' | 'LiveViewStop' | 'PropertyChangeOptions' | 'PropertyChangeValue' | 'DownloadRequest' | 'FileCreate' | 'DirectoryCreate' | 'VolumeChange' | 'ObjectChange' | 'Error', string> = {
         'CameraAdd': 'CameraAdd',
         'CameraConnect': 'CameraConnect',
         'CameraDisconnect': 'CameraDisconnect',
