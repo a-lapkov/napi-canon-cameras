@@ -83,7 +83,7 @@ function quoteString(value) {
 function generateObjectSource(name, values) {
     const keyType = Object.keys(values).map(key => `'${key}'`).join(' | ');
     const valueType = (typeof Object.values(values)[0]) || undefined;
-    const typeScriptType = `{[key: ${keyType || 'string'}]: ${valueType || 'any'}}`;
+    const typeScriptType = `Record<${keyType || 'string'}, ${valueType || 'any'}>`;
     let code = `/**\n * @readonly\n * @enum {${valueType}}\n */\n`;
     code += `static readonly ${name}: ${typeScriptType} = {`;
     code += getIndentedSource(

@@ -1,4 +1,4 @@
-Please unpack the EDSDK as `EDSDK/` into this folder.
+Please unpack the EDSDK as `EDSDKv131520W/Windows/` into this folder.
 
 EDSDK 13.14.40 has an error in `EDSDKTypes.h` that triggers a conflict.
 Change the "ObjectFormat Code (line 865-873)" to:
