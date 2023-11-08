@@ -113,7 +113,7 @@
                             "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Header"
                         ],
                         "libraries": [
-                          "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Framework/EDSDK.framework"
+                          "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Framework/EDSDK.Framework"
                         ],
                         'xcode_settings': {
                             'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
