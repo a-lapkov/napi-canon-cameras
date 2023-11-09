@@ -107,7 +107,8 @@
                     {
                         "defines": [ '__MACOS__' ],
                         "variables": {
-                            "edsdk_directory": "EDSDKv<(edsdk_version)M"
+                            "edsdk_directory": "EDSDKv<(edsdk_version)M",
+                            "prebuilds_subdirectory": "prebuilds/darwin-<(target_arch)/"
                         },
                         "include_dirs": [
                             "<(module_root_dir)/third_party/<(edsdk_directory)/macos/EDSDK/Header"
@@ -123,7 +124,7 @@
                                 '-Wno-ignored-attributes'
                             ],
                             'OTHER_LDFLAGS': [
-                                '-Wl,-rpath,./prebuilds/darwin-x64/,-rpath,./node_modules/@dimensional/napi-canon-cameras/prebuilds/darwin-x64/',
+                                '-Wl,-rpath,./<(prebuilds_subdirectory),-rpath,./node_modules/@dimensional/napi-canon-cameras/<(prebuilds_subdirectory)',
                                 '-F ../third_party/<(edsdk_directory)/macos/EDSDK/Framework/',
                                 '-framework EDSDK'
                             ]
