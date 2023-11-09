@@ -5,6 +5,8 @@ EDSDK (Canon camera) wrapper module for Node.js
 * [Features](#features)
 * [Usage Example](#usage)
 * [Build Package](#build-package)
+  * [EDSDK Files](#edsdk-files)
+  * [Build Process](#build-process)
   * [NPM Tasks](#npm-tasks)
 * [FAQ](#faq)
 * [API Documentation](API.md)
@@ -99,36 +101,19 @@ watchCameras();
  
 ## Build Package
 
-The package does not include the Canon EDSDK files. To install the package you will have 
-to build a TGZ.
- 
- 1. Unpack the Canon EDSDK into `third_party`. Keep the package name as subdirectory.
-    * `EDSDKv131520W.zip` → `third_party/EDSDKv131520W`
- 2. Make sure the variable `edsdk_version` in `binding.gyp` matches the EDSDK version. (The numeric part of the 
-    package name)
- 3. Run `npm run package`
- 4. Look for `../node_packages/@dimensional/napi-canon-cameras.tgz`
- 5. `cd ../YourProject` (Switch tp your project directory)
- 6. `npm i ../node_packages/@dimensional/napi-canon-cameras.tgz`
+### EDSDK Files
+The package does not include the Canon EDSDK files. Before installing, you need 
+to copy the files to specific directories inside the `third_party` directory.
+You will also need to apply a bugfix in the provided header files.
+**See the [third_party README](third_party/README.md) for instructions on how to do this.**
 
-The current EDSDK versions have a bug in `EDSDKTypes.h`. The keys are missing
-their prefixes. This will result in a conflict at compile time.
-You will need to fix the `EdsObjectFormat` enum. 
-
-```cpp
-/*-----------------------------------------------------------------------------
-ObjectFormat Code
------------------------------------------------------------------------------*/
-typedef enum
-{
-    kEdsObjectFormat_Unknown   = 0x00000000,
-    kEdsObjectFormat_Jpeg      = 0x3801,
-    kEdsObjectFormat_CR2       = 0xB103,
-    kEdsObjectFormat_MP4       = 0xB982,
-    kEdsObjectFormat_CR3       = 0xB108,
-    kEdsObjectFormat_HEIF_CODE = 0xB10B,
-} EdsObjectFormat;
-```
+### Build Process
+To install the package you will have to build a TGZ.
+- Run `npm run package` and wait for a successful build
+- Make sure `../node_packages/@dimensional/napi-canon-cameras.tgz` has been created
+- `cd ../YourProject` (Switch to your project directory)
+- Add `"@dimensional/napi-canon-cameras": "file:../node_packages/@dimensional/napi-canon-cameras.tgz"` to your package.json dependencies and `npm i`
+  (or just directly `npm i file:../node_packages/@dimensional/napi-canon-cameras.tgz`)
 
 ### NPM Tasks
 
