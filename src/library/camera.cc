@@ -250,6 +250,22 @@ namespace CameraApi {
         return error;
     }
 
+    EdsError Camera::lockUI() {
+        if (!isConnected_) {
+            return EDS_ERR_SESSION_NOT_OPEN;
+        }
+        EdsError error = EdsSendStatusCommand(edsCamera_, kEdsCameraStatusCommand_UILock, 0);
+        return error;
+    }
+
+    EdsError Camera::unlockUI() {
+        if (!isConnected_) {
+            return EDS_ERR_SESSION_NOT_OPEN;
+        }
+        EdsError error = EdsSendStatusCommand(edsCamera_, kEdsCameraStatusCommand_UIUnLock, 0);
+        return error;
+    }
+
     EdsError Camera::startLiveView() {
         if (!isConnected_) {
             return EDS_ERR_SESSION_NOT_OPEN;
@@ -733,6 +749,14 @@ namespace CameraApi {
         return ApiError::ThrowIfFailed(info.Env(), camera_->takePicture());
     }
 
+    Napi::Value CameraWrap::LockUI(const Napi::CallbackInfo &info) {
+        return ApiError::ThrowIfFailed(info.Env(), camera_->lockUI());
+    }
+
+    Napi::Value CameraWrap::UnLockUI(const Napi::CallbackInfo &info) {
+        return ApiError::ThrowIfFailed(info.Env(), camera_->unlockUI());
+    }
+
     Napi::Value CameraWrap::StartLiveView(const Napi::CallbackInfo &info) {
         return ApiError::ThrowIfFailed(info.Env(), camera_->startLiveView());
     }
@@ -822,6 +846,8 @@ namespace CameraApi {
                 InstanceMethod("setProperties", &CameraWrap::SetProperties),
                 InstanceMethod("sendCommand", &CameraWrap::SendCommand),
                 InstanceMethod("takePicture", &CameraWrap::TakePicture),
+                InstanceMethod("lockUI", &CameraWrap::LockUI),
+                InstanceMethod("unlockUI", &CameraWrap::UnLockUI),
                 InstanceMethod("startLiveView", &CameraWrap::StartLiveView),
                 InstanceMethod("isLiveViewActive", &CameraWrap::IsLiveViewActive),
                 InstanceMethod("stopLiveView", &CameraWrap::StopLiveView),

@@ -100,6 +100,20 @@ export class Camera {
     }
 
     /**
+     * Prevent camera controls from being used
+     */
+    lockUI(): void {
+        throw new Error('Not implemented - stub only.');
+    }
+
+    /**
+     * Allow camera controls to be used
+     */
+    unlockUI(): void {
+        throw new Error('Not implemented - stub only.');
+    }
+
+    /**
      * Return true if the LiveView is currently active
      * @returns {boolean}
      */
