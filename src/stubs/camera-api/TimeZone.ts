@@ -22,7 +22,7 @@ export class TimeZone implements PropertyValue {
     ) {
         this.value_ = value_;
         this.zone_ = value_;
-        this.label_ = TimeZone.Zones[`${value_}`] || '';
+        this.label_ = TimeZone.Zones[`${value_}` as keyof typeof TimeZone.Zones] || '';
     }
 
     /**
@@ -91,7 +91,7 @@ export class TimeZone implements PropertyValue {
      * @readonly
      * @enum {string}
      */
-    static readonly Zones: {[key: string]: string} = {
+    static readonly Zones: Record<'0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20' | '21' | '22' | '23' | '24' | '25' | '26' | '27' | '28' | '29' | '30' | '31' | '32' | '33' | '34' | '35' | '256' | '65535', string> = {
         '0': 'None',
         '1': 'Chatham Islands',
         '2': 'Wellington',

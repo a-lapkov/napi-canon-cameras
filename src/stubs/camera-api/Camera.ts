@@ -100,6 +100,20 @@ export class Camera {
     }
 
     /**
+     * Prevent camera controls from being used
+     */
+    lockUI(): void {
+        throw new Error('Not implemented - stub only.');
+    }
+
+    /**
+     * Allow camera controls to be used
+     */
+    unlockUI(): void {
+        throw new Error('Not implemented - stub only.');
+    }
+
+    /**
      * Return true if the LiveView is currently active
      * @returns {boolean}
      */
@@ -149,7 +163,7 @@ export class Camera {
      * @readonly
      * @enum {string}
      */
-    static readonly EventName: {[key: string]: string} = {
+    static readonly EventName: Record<'CameraConnect' | 'CameraDisconnect' | 'StateChange' | 'KeepAlive' | 'LiveViewStart' | 'LiveViewStop' | 'PropertyChangeOptions' | 'PropertyChangeValue' | 'DownloadRequest' | 'FileCreate' | 'DirectoryCreate' | 'VolumeChange' | 'ObjectChange' | 'Error', string> = {
         'CameraConnect': 'CameraConnect',
         'CameraDisconnect': 'CameraDisconnect',
         'DirectoryCreate': 'DirectoryCreate',
@@ -170,7 +184,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly Command: {[key: string]: number} = {
+    static readonly Command: Record<'MovieSelectSwON' | 'SetRemoteShootingMode' | 'TakePicture' | 'DoEvfAf' | 'ExtendShutDownTimer' | 'RequestRollPitchLevel' | 'BulbStart' | 'BulbEnd' | 'DoClickWBEvf' | 'PressShutterButton' | 'DriveLensEvf' | 'MovieSelectSwOFF' | 'DrivePowerZoom' | 'RequestSensorCleaning', number> = {
         'BulbEnd': 3,
         'BulbStart': 2,
         'DoClickWBEvf': 260,
@@ -191,7 +205,7 @@ export class Camera {
      * @readonly
      * @enum {number}
      */
-    static readonly PressShutterButton: {[key: string]: number} = {
+    static readonly PressShutterButton: Record<'HalfwayNonAF' | 'OFF' | 'Halfway' | 'Completely' | 'CompletelyNonAF', number> = {
         'Completely': 3,
         'CompletelyNonAF': 65539,
         'Halfway': 1,

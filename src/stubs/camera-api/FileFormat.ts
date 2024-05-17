@@ -13,9 +13,8 @@ export class FileFormat implements PropertyValue {
     constructor(
         private readonly value_: number
     ) {
-        this.label_ = Object
-            .keys(FileFormat.ID)
-            .find(key => FileFormat.ID[key] === this.value_) ||
+        const keys = Object.keys(FileFormat.ID) as (keyof typeof FileFormat.ID)[];
+        this.label_ = keys.find(key => FileFormat.ID[key] === this.value_) ||
                 `0x${value_.toString(16).padStart(8, '0')}`;
     }
 
@@ -57,7 +56,7 @@ export class FileFormat implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID: Record<'Unknown' | 'MP4' | 'JPEG' | 'HEIF_CODE' | 'CR2' | 'CR3', number> = {
         'CR2': 45315,
         'CR3': 45320,
         'HEIF_CODE': 45323,

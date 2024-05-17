@@ -6,7 +6,13 @@ set(EDSDK_DIRECTORY EDSDKv${EDSDK_VERSION}W)
 
 project(napi-canon-cameras)
 include_directories(${CMAKE_JS_INC})
-include_directories(third_party/${EDSDK_DIRECTORY}/Windows/EDSDK/Header)
+if (WIN32)
+    set(EDSDK_DIRECTORY EDSDKv${EDSDK_VERSION}W)
+    include_directories(third_party/${EDSDK_DIRECTORY}/Windows/EDSDK/Header)
+else()
+    set(EDSDK_DIRECTORY EDSDKv${EDSDK_VERSION}M)
+    include_directories(third_party/${EDSDK_DIRECTORY}/macos/EDSDK/Header)
+endif()
 
 file(GLOB SOURCE_FILES CONFIGURE_DEPENDS "src/library/*.cc" "src/library/*.h")
 

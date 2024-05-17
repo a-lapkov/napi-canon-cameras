@@ -28,7 +28,7 @@ export class StateEvent extends ApiIdentifier {
      * @readonly
      * @enum {number}
      */
-    static readonly ID: {[key: string]: number} = {
+    static readonly ID: Record<'All' | 'AfResult' | 'Shutdown' | 'JobStatusChanged' | 'WillSoonShutDown' | 'ShutDownTimerUpdate' | 'CaptureError' | 'InternalError' | 'BulbExposureTime' | 'PowerZoomInfoChanged', number> = {
         'AfResult': 777,
         'All': 768,
         'BulbExposureTime': 784,

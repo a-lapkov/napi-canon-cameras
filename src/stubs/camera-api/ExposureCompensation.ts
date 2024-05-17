@@ -16,7 +16,8 @@ export class ExposureCompensation implements PropertyValue {
     constructor(
         private readonly value_: number,
     ) {
-        this.compensation_ = ExposureCompensation.Values[value_] || 0;
+        const key = `${value_}` as keyof typeof ExposureCompensation.Values;
+        this.compensation_ = ExposureCompensation.Values[key] || 0;
         this.label_ = ExposureCompensation.getLabelForCompensation(this.compensation_);
     }
 
@@ -79,7 +80,8 @@ export class ExposureCompensation implements PropertyValue {
     }
 
     private static findNearest(compensation: number): number | null {
-        const found = Object.keys(ExposureCompensation.Values).reduce(
+        const keys = Object.keys(ExposureCompensation.Values) as (keyof typeof ExposureCompensation.Values)[];
+        const found = keys.reduce(
             (carry, key) => {
                 if (carry.difference < 0.001) {
                     return carry;
@@ -137,7 +139,7 @@ export class ExposureCompensation implements PropertyValue {
      * @readonly
      * @enum {number}
      */
-    static readonly Values: {[key: string]: number} = {
+    static readonly Values: Record<'0' | '3' | '4' | '5' | '8' | '11' | '12' | '13' | '16' | '19' | '20' | '21' | '24' | '27' | '28' | '29' | '32' | '35' | '36' | '37' | '40' | '216' | '219' | '220' | '221' | '224' | '227' | '228' | '229' | '232' | '235' | '236' | '237' | '240' | '243' | '244' | '245' | '248' | '251' | '252' | '253', number> = {
         '0': 0,
         '3': 0.3333333333333333,
         '4': 0.5,

@@ -23,6 +23,10 @@ namespace CameraApi {
 
             EdsError takePicture();
 
+            EdsError lockUI();
+
+            EdsError unlockUI();
+
             EdsError startLiveView();
 
             EdsError stopLiveView();
@@ -133,6 +137,10 @@ namespace CameraApi {
             Napi::Value SendCommand(const Napi::CallbackInfo &info);
 
             Napi::Value TakePicture(const Napi::CallbackInfo &info);
+
+            Napi::Value LockUI(const Napi::CallbackInfo &info);
+
+            Napi::Value UnLockUI(const Napi::CallbackInfo &info);
 
             Napi::Value StartLiveView(const Napi::CallbackInfo &info);
 
