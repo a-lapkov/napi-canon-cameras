@@ -40,8 +40,6 @@ export class CameraBrowser {
      * watchCameras();
      * ```
      */
-    constructor() {
-    }
 
     /**
      * Set event handler callback
